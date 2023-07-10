@@ -25,7 +25,7 @@ app.get("/api/stock", async (req, res) => {
     url: "https://yh-finance8.p.rapidapi.com/stock/get_financial_stmts",
     params: {
       symbol: ticker.toUpperCase(),
-      frequency: "quarterly",
+      frequency: "annual",
       statement_type: "income",
       region: "US",
     },
