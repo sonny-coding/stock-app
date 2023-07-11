@@ -1,17 +1,10 @@
 import { data } from "./data";
-import Chart from "./components/Chart";
+import { getSortedData, getGrownthPercentage } from "./utils";
+import RevGrossOp from "./components/RevGrossOp";
+import Income from "./components/Income";
+import Growth from "./components/Growth";
 const App = () => {
-  const sortedData = data.incomeStatementHistory.AMD.sort((a, b) => {
-    const keyA = Object.keys(a);
-    const keyB = Object.keys(b);
-    if (keyA < keyB) {
-      return -1;
-    }
-    if (keyB > keyA) {
-      return 1;
-    }
-    return 0;
-  });
+  const sortedData = getSortedData(data.incomeStatementHistory.AMD);
 
   const graphData = sortedData.map((element, index) => {
     for (const [key, value] of Object.entries(element)) {
@@ -30,9 +23,12 @@ const App = () => {
     }
   });
   console.log(graphData);
+  console.log(getGrownthPercentage(graphData));
   return (
-    <div className="mt-5 flex justify-center items-center">
-      <Chart className="" chart={graphData} />
+    <div className="mt-5 flex flex-wrap justify-center items-center">
+      <RevGrossOp chart={graphData} />
+      <Income chart={graphData} />
+      <Growth chart={getGrownthPercentage(graphData)} />
     </div>
   );
 };
