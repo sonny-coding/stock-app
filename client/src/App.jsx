@@ -1,4 +1,5 @@
 import { data } from "./data";
+import Chart from "./components/Chart";
 const App = () => {
   const sortedData = data.incomeStatementHistory.AMD.sort((a, b) => {
     const keyA = Object.keys(a);
@@ -12,11 +13,11 @@ const App = () => {
     return 0;
   });
 
-  const graphData = sortedData.map((element) => {
+  const graphData = sortedData.map((element, index) => {
     for (const [key, value] of Object.entries(element)) {
       // console.log(`${key}: ${value.totalRevenue}`);
       return {
-        time: key,
+        time: index + 1 < sortedData.length ? key.split("-")[0] : "TTM",
         totalRevenue: value.totalRevenue,
         // costOfRevenue: value.costOfRevenue,
         grossProfit: value.grossProfit,
@@ -30,25 +31,9 @@ const App = () => {
   });
   console.log(graphData);
   return (
-    <div>hello</div>
-    //   <div className="text-3xl">
-    //     <p>Revenue: {data.totalRevenue.toLocaleString()}</p>
-    //     {/* <p>Total cost of Sxales {data.costOfRevenue.toLocaleString()}</p> */}
-    //     <p>Gross Profit: {data.grossProfit.toLocaleString()}</p>
-    //     {/* <p>
-    //       Gross Margin:{" "}
-    //       {((data.grossProfit * 100) / data.totalRevenue).toFixed(2)}%
-    //     </p> */}
-
-    //     {/* <p>Operating Expense: {data.operatingExpense.toLocaleString()}</p> */}
-    //     <p>Operating Income: {data.operatingIncome.toLocaleString()}</p>
-    //     {/* <p>
-    //       Net Income:{" "}
-    //       {((data.operatingIncome * 100) / data.totalRevenue).toFixed(2)}%
-    //     </p> */}
-    //     <p>Net Income: {data.netIncome.toLocaleString()}</p>
-    //   </div>
-    // );
+    <div className="mt-5 flex justify-center items-center">
+      <Chart className="" chart={graphData} />
+    </div>
   );
 };
 
