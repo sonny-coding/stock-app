@@ -3,6 +3,7 @@ import { getSortedData, getGrownthPercentage } from "./utils";
 import RevGrossOp from "./components/RevGrossOp";
 import Income from "./components/Income";
 import Growth from "./components/Growth";
+import Search from "./components/Search";
 const App = () => {
   const sortedData = getSortedData(data.incomeStatementHistory.AMD);
 
@@ -26,9 +27,10 @@ const App = () => {
   console.log(getGrownthPercentage(graphData));
   return (
     <div className="mt-5 flex flex-wrap justify-center items-center">
-      <RevGrossOp chart={graphData} />
-      <Income chart={graphData} />
-      <Growth chart={getGrownthPercentage(graphData)} />
+      {/* <RevGrossOp chart={graphData} /> */}
+      {/* <Income chart={graphData} /> */}
+      {/* <Growth chart={getGrownthPercentage(graphData)} /> */}
+      <Search />
     </div>
   );
 };
