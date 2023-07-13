@@ -4,6 +4,9 @@ import RevGrossOp from "./components/RevGrossOp";
 import Income from "./components/Income";
 import Growth from "./components/Growth";
 import Search from "./components/Search";
+import SearchIcon from "./components/svg/SearchIcon";
+import { tickers } from "./data/recent";
+import RecentTicker from "./components/RecentTicker";
 const App = () => {
   const sortedData = getSortedData(data.incomeStatementHistory.AMD);
 
@@ -26,11 +29,19 @@ const App = () => {
   console.log(graphData);
   console.log(getGrownthPercentage(graphData));
   return (
-    <div className="mt-5 flex flex-wrap justify-center items-center">
+    <div className="bg-night max-w-[1000px] w-full h-screen mx-auto text-base font-sourcecode text-yellow px-3">
       {/* <RevGrossOp chart={graphData} /> */}
-      {/* <Income chart={graphData} /> */}
-      {/* <Growth chart={getGrownthPercentage(graphData)} /> */}
-      <Search />
+      <button className="flex flex-row items-center w-full px-3 py-2 text-left rounded-lg bg-cinder cursor-text">
+        <div className="w-4 h-4 mr-3">
+          <SearchIcon />
+        </div>
+        Search...
+      </button>
+      <div className="flex flex-row items-center w-full gap-3 mt-3">
+        {tickers.map((ticker) => {
+          return <RecentTicker key={ticker} ticker={ticker} />;
+        })}
+      </div>
     </div>
   );
 };
