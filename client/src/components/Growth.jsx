@@ -11,46 +11,55 @@ import {
   Legend,
   Line,
   LineChart,
+  ResponsiveContainer,
 } from "recharts";
 
 // eslint-disable-next-line react/prop-types
 export default function Growth({ chart }) {
+  const customStyle = { fontSize: "12px" };
+
   return (
-    <LineChart
-      width={500}
-      height={300}
-      data={chart}
-      margin={{
-        top: 20,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid vertical={false} horizontal={false} />
-      <XAxis dataKey="time" />
-      <YAxis />
-      <Tooltip formatter={dataFormat} />
-      <Legend />
-      {/* <Bar dataKey="netIncome" stackId="a" fill="#8884d8" /> */}
-      <Line
-        type="monotone"
-        dataKey="grossMargin"
-        stroke="#8884d8"
-        strokeWidth={2}
-      />
-      <Line
-        type="monotone"
-        dataKey="operatingMargin"
-        stroke="#f2f"
-        strokeWidth={2}
-      />
-      <Line
-        type="monotone"
-        dataKey="incomeMargin"
-        stroke="#82ca9d"
-        strokeWidth={2}
-      />
-    </LineChart>
+    <ResponsiveContainer width="100%" height={300}>
+      <LineChart
+        width={500}
+        height={300}
+        data={chart}
+        margin={{
+          top: 20,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid vertical={false} horizontal={false} />
+        <XAxis style={customStyle} stroke="white" dataKey="time" />
+        <YAxis style={customStyle} stroke="white" />
+        <Tooltip
+          formatter={dataFormat}
+          contentStyle={{ backgroundColor: "#121913" }}
+          cursor={{ fill: "#121913", stroke: "#121913" }}
+        />
+        <Legend />
+        {/* <Bar dataKey="netIncome" stackId="a" fill="#8884d8" /> */}
+        <Line
+          type="monotone"
+          dataKey="grossMargin"
+          stroke="#007cc3"
+          strokeWidth={2}
+        />
+        <Line
+          type="monotone"
+          dataKey="operatingMargin"
+          stroke="#7ac142"
+          strokeWidth={2}
+        />
+        <Line
+          type="monotone"
+          dataKey="incomeMargin"
+          stroke="#fdbb2f"
+          strokeWidth={2}
+        />
+      </LineChart>
+    </ResponsiveContainer>
   );
 }

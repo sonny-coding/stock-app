@@ -9,28 +9,36 @@ import {
   CartesianGrid,
   Tooltip,
   Legend,
+  ResponsiveContainer,
 } from "recharts";
 
 // eslint-disable-next-line react/prop-types
 export default function Income({ chart }) {
+  const customStyle = { fontSize: "12px" };
   return (
-    <BarChart
-      width={500}
-      height={300}
-      data={chart}
-      margin={{
-        top: 20,
-        right: 30,
-        left: 20,
-        bottom: 5,
-      }}
-    >
-      <CartesianGrid vertical={false} horizontal={false} />
-      <XAxis dataKey="time" />
-      <YAxis tickFormatter={dataFormat} />
-      <Tooltip formatter={dataFormat} />
-      <Legend />
-      <Bar dataKey="netIncome" stackId="a" fill="#8884d8" />
-    </BarChart>
+    <ResponsiveContainer width={"100%"} height={300}>
+      <BarChart
+        // width={500}
+        // height={300}
+        data={chart}
+        margin={{
+          top: 20,
+          right: 30,
+          left: 20,
+          bottom: 5,
+        }}
+      >
+        <CartesianGrid vertical={false} horizontal={false} />
+        <XAxis style={customStyle} dataKey="time" stroke="white" />
+        <YAxis style={customStyle} tickFormatter={dataFormat} stroke="white" />
+        <Tooltip
+          formatter={dataFormat}
+          contentStyle={{ backgroundColor: "#121913" }}
+          cursor={{ fill: "#121913", stroke: "#121913" }}
+        />
+        <Legend />
+        <Bar dataKey="netIncome" stackId="a" fill="#007cc3" />
+      </BarChart>
+    </ResponsiveContainer>
   );
 }

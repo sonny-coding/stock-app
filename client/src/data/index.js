@@ -68,6 +68,7 @@ export const data = {
           ebit: 261000000,
           Profit: 10144000000,
           interestExpense: 100000000,
+          grossProfit: 10603000000,
           interestExpenseNonOperating: 100000000,
           netIncome: 395000000,
           netIncomeCommonStockholders: 395000000,
