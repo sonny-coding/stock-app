@@ -18,8 +18,6 @@ export default function RevGrossOp({ chart }) {
   return (
     <ResponsiveContainer width="100%" height={300}>
       <BarChart
-        // width={500}
-        // height={300}
         data={chart}
         margin={{
           top: 20,
@@ -38,8 +36,8 @@ export default function RevGrossOp({ chart }) {
         />
         <Legend />
         <Bar dataKey="totalRevenue" stackId="a" fill="#007cc3" />
-        <Bar dataKey="grossProfit" stackId="b" fill="#7ac142" />
-        <Bar dataKey="operatingIncome" stackId="c" fill="#fdbb2f" />
+        <Bar dataKey="grossProfit" stackId="b" fill="#36C190" />
+        <Bar dataKey="operatingIncome" stackId="c" fill="#E09F1F" />
       </BarChart>
     </ResponsiveContainer>
   );

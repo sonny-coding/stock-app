@@ -7,7 +7,9 @@ import Search from "./components/Search";
 import SearchIcon from "./components/svg/SearchIcon";
 import { tickers } from "./data/recent";
 import RecentTicker from "./components/RecentTicker";
+import { useState, useEffect } from "react";
 const App = () => {
+  const popularTickers = useState(null);
   const sortedData = getSortedData(data.incomeStatementHistory.AMD);
 
   const graphData = sortedData.map((element, index) => {

@@ -33,7 +33,13 @@ export default function Growth({ chart }) {
       >
         <CartesianGrid vertical={false} horizontal={false} />
         <XAxis style={customStyle} stroke="white" dataKey="time" />
-        <YAxis style={customStyle} stroke="white" />
+        <YAxis
+          style={customStyle}
+          stroke="white"
+          tickFormatter={(tick) => {
+            return `${tick}%`;
+          }}
+        />
         <Tooltip
           formatter={dataFormat}
           contentStyle={{ backgroundColor: "#121913" }}

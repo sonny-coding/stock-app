@@ -7,8 +7,9 @@ export default {
         cinder: "#141417",
         night: "#0b0b0b",
         blackgreen: "#121913",
-        green: "#73ff92",
-        yellow: "#ffb400",
+        blue: "#007cc3",
+        green: "##36C190",
+        yellow: "#E09F1F",
         gray: "#7d7d7d",
       },
       fontFamily: {
