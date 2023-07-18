@@ -1,16 +1,16 @@
 import { Fragment, useState } from "react";
 import { Combobox, Transition } from "@headlessui/react";
 // import { CheckIcon, ChevronUpDownIcon } from '@heroicons/react/20/solid'
-import { data, stocks } from "../data";
+// import { data, stocks } from "../data";
 
-// const people = [
-//   { id: 1, name: "Wade Cooper" },
-//   { id: 2, name: "Arlene Mccoy" },
-//   { id: 3, name: "Devon Webb" },
-//   { id: 4, name: "Tom Cook" },
-//   { id: 5, name: "Tanya Fox" },
-//   { id: 6, name: "Hellen Schmidt" },
-// ];
+const people = [
+  { id: 1, name: "Wade Cooper" },
+  { id: 2, name: "Arlene Mccoy" },
+  { id: 3, name: "Devon Webb" },
+  { id: 4, name: "Tom Cook" },
+  { id: 5, name: "Tanya Fox" },
+  { id: 6, name: "Hellen Schmidt" },
+];
 
 export default function Search() {
   const [selected, setSelected] = useState();
@@ -19,7 +19,7 @@ export default function Search() {
   const filteredStocks =
     query === ""
       ? []
-      : stocks
+      : people
           .slice(0, 600)
           .filter(
             (stock) =>

@@ -8,7 +8,7 @@ export default {
         night: "#0b0b0b",
         blackgreen: "#121913",
         blue: "#007cc3",
-        green: "##36C190",
+        green: "#36C190",
         yellow: "#E09F1F",
         gray: "#7d7d7d",
       },

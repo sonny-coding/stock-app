@@ -21,37 +21,17 @@ app.get("/hello", (req, res) => {
 
 app.get("/api/stock", async (req, res) => {
   const { ticker } = req.query;
-  // const options = {
-  //   url: "https://yh-finance8.p.rapidapi.com/stock/get_financial_stmts",
-  //   params: {
-  //     symbol: ticker.toUpperCase(),
-  //     frequency: "annual",
-  //     statement_type: "income",
-  //     region: "US",
-  //   },
-  //   headers: {
-  //     "X-RapidAPI-Key": process.env.XRapidAPIKey,
-  //     "X-RapidAPI-Host": "yh-finance8.p.rapidapi.com",
-  //   },
-  // };
-
-  // try {
-  //   const response = await axios.request(options);
-  //   res.status(200).json(response.data);
-  // } catch (error) {
-  //   console.status(500).send(error);
-  // }
-
   const options = {
-    method: "GET",
-    url: "https://twelve-data1.p.rapidapi.com/stocks",
+    url: "https://yh-finance8.p.rapidapi.com/stock/get_financial_stmts",
     params: {
-      exchange: "NYSE",
-      format: "json",
+      symbol: ticker.toUpperCase(),
+      frequency: "annual",
+      statement_type: "income",
+      region: "US",
     },
     headers: {
-      "X-RapidAPI-Key": "80fe7555dcmsh08c61cb32645a1ep15d440jsn9d1b3589bbf8",
-      "X-RapidAPI-Host": "twelve-data1.p.rapidapi.com",
+      "X-RapidAPI-Key": process.env.XRapidAPIKey,
+      "X-RapidAPI-Host": "yh-finance8.p.rapidapi.com",
     },
   };
 
@@ -59,7 +39,7 @@ app.get("/api/stock", async (req, res) => {
     const response = await axios.request(options);
     res.status(200).json(response.data);
   } catch (error) {
-    console.error(error);
+    console.status(500).send(error);
   }
 });
 
