@@ -5,8 +5,9 @@ import RevGrossOp from "./components/RevGrossOp";
 import Trending from "./components/Trending";
 import SearchIcon from "./components/svg/SearchIcon";
 import { data } from "./data";
-import { getGrownthPercentage, getSortedData } from "./utils";
+import { getGrownthPercentage, getSortedData, getParams } from "./utils";
 import axios from "axios";
+import Testing from "./components/Testing";
 
 const App = () => {
   const sortedData = getSortedData(data.incomeStatementHistory.AMD);
@@ -40,25 +41,6 @@ const App = () => {
     fetchTicker();
   }, []);
 
-  // useEffect(() => {
-  //   const fetchTrending = async () => {
-  //     const options = {
-  //       method: "GET",
-  //       // params: { modules: "defaultKeyStatistics,assetProfile" },
-  //       headers: {
-  //         "x-api-key": import.meta.env.VITE_X_API_KEY,
-  //       },
-  //     };
-  //     const response = await fetch(
-  //       "https://yfapi.net/v1/finance/trending/US",
-  //       options
-  //     );
-  //     const data = await response.json();
-  //     setTrending(data?.finance?.result[0]?.quotes);
-  //   };
-  //   fetchTrending();
-  // }, []);
-
   const graphData = sortedData.map((element, index) => {
     for (const [key, value] of Object.entries(element)) {
       // console.log(`${key}: ${value.totalRevenue}`);
@@ -84,10 +66,8 @@ const App = () => {
         </div>
         Search...
       </button>
-      <Trending
-        // tickers={trending?.slice(0, 7)}
-        setCurrentTicker={setCurrentTicker}
-      />
+      <Trending setCurrentTicker={setCurrentTicker} />
+      <Testing />
       <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2">
         <div className="w-full h-auto">
           <RevGrossOp chart={graphData} />

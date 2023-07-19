@@ -37,3 +37,12 @@ export const getGrownthPercentage = (data) => {
   });
   return growth;
 };
+
+export const getParams = (arr) => {
+  let result = arr
+    .map((each) => {
+      return each.symbol;
+    })
+    .join("%2C");
+  return result;
+};

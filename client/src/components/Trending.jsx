@@ -1,20 +1,27 @@
 import useFetchTrending from "../hooks/useFetchTrending";
+import useFetchTrendingData from "../hooks/useFetchTrendingData";
+import { getParams } from "../utils";
 
 const Trending = ({ setCurrentTicker }) => {
-  const { data, error, isLoading } = useFetchTrending();
-  console.log("🚀 ~ file: Trending.jsx:5 ~ Trending ~ data:", data);
+  const { data: tickers } = useFetchTrending();
+  const { data, error, isLoading } = useFetchTrendingData();
 
-  if (error) {
-    return <div>failed to load</div>;
+  if (tickers) {
+    // const myResult = getParams(tickers.slice(0, 10));
+    // console.log(myResult);
   }
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
+
+  // if (error) {
+  //   return <div>failed to load</div>;
+  // }
+  // if (isLoading) {
+  //   return <div>loading...</div>;
+  // }
 
   return (
     <div className="mt-5">
       <div className="flex flex-row items-center w-full gap-3 mt-5">
-        {/* {tickers?.map((ticker) => {
+        {tickers?.slice(0, 7).map((ticker) => {
           return (
             <div
               onClick={setCurrentTicker(ticker.symbol)}
@@ -24,9 +31,11 @@ const Trending = ({ setCurrentTicker }) => {
               {ticker.symbol}
             </div>
           );
-        })} */}
-        {data.message}
+        })}
       </div>
+      {data?.map((data) => {
+        return <div>{data.symbol}</div>;
+      })}
       <p>Trending Tickers</p>
     </div>
   );

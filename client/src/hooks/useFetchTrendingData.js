@@ -9,22 +9,20 @@ const options = {
 };
 
 const fetcher = (...args) => fetch(...args, options).then((res) => res.json());
-const useFetchTrending = () => {
-  const trendingUrl = "https://yfapi.net/v1/finance/trending/US";
-  const dataUrl =
+// const fetcher = async (args) => {
+//   const response = await fetch(args);
+//   const data = await response.json();
+//   return data;
+// };
+const useFetchTrendingData = () => {
+  const url =
     "https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=AMD%2CAAPL";
-  const { data: tickers } = useSWR(trendingUrl, fetcher);
-  const {
-    data: result,
-    error,
-    isLoading,
-  } = useSWR(tickers ? dataUrl : null, fetcher);
+  const { data, error, isLoading } = useSWR(url, fetcher);
   return {
-    // data: data?.finance?.result[0]?.quotes,
-    result,
+    data: data?.quoteResponse?.result,
     error,
     isLoading,
   };
 };
 
-export default useFetchTrending;
+export default useFetchTrendingData;
