@@ -40,6 +40,7 @@ export const getGrownthPercentage = (data) => {
 
 export const getParams = (arr) => {
   let result = arr
+    .slice(0, 10)
     .map((each) => {
       return each.symbol;
     })

@@ -14,7 +14,7 @@ import {
 
 // eslint-disable-next-line react/prop-types
 export default function RevGrossOp({ chart }) {
-  const customStyle = { fontSize: "12px" };
+  const customStyle = { fontSize: "10px" };
   return (
     <ResponsiveContainer width="100%" height={300}>
       <BarChart
@@ -27,17 +27,21 @@ export default function RevGrossOp({ chart }) {
         }}
       >
         <CartesianGrid vertical={false} horizontal={false} />
-        <XAxis style={customStyle} dataKey="time" stroke="white" />
-        <YAxis style={customStyle} tickFormatter={dataFormat} stroke="white" />
+        <XAxis style={customStyle} dataKey="time" stroke="#7d7d7d" />
+        <YAxis
+          style={customStyle}
+          tickFormatter={dataFormat}
+          stroke="#7d7d7d"
+        />
         <Tooltip
           formatter={dataFormat}
           contentStyle={{ backgroundColor: "#121913" }}
           cursor={{ fill: "#121913", stroke: "#121913" }}
         />
         <Legend />
-        <Bar dataKey="totalRevenue" stackId="a" fill="#007cc3" />
-        <Bar dataKey="grossProfit" stackId="b" fill="#36C190" />
-        <Bar dataKey="operatingIncome" stackId="c" fill="#E09F1F" />
+        <Bar dataKey="totalRevenue" stackId="a" fill="#48b0ed" />
+        <Bar dataKey="grossProfit" stackId="b" fill="#1b57ed" />
+        <Bar dataKey="operatingIncome" stackId="c" fill="#db864a" />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -1,4 +1,5 @@
 import useSWR from "swr";
+import { getParams } from "../utils";
 
 const options = {
   method: "GET",
@@ -12,16 +13,17 @@ const fetcher = (...args) => fetch(...args, options).then((res) => res.json());
 const useFetchTrending = () => {
   const trendingUrl = "https://yfapi.net/v1/finance/trending/US";
   const dataUrl =
-    "https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=AMD%2CAAPL";
+    "https://yfapi.net/v6/finance/quote?region=US&lang=en&symbols=";
+  // fetch trending tickers
   const { data: tickers } = useSWR(trendingUrl, fetcher);
-  const {
-    data: result,
-    error,
-    isLoading,
-  } = useSWR(tickers ? dataUrl : null, fetcher);
+  // fetch trending tickers data
+  const { data, error, isLoading } = useSWR(
+    tickers ? dataUrl + getParams(tickers?.finance?.result[0]?.quotes) : null,
+    fetcher
+  );
   return {
     // data: data?.finance?.result[0]?.quotes,
-    result,
+    data: data?.quoteResponse?.result,
     error,
     isLoading,
   };

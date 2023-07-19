@@ -16,7 +16,7 @@ import {
 
 // eslint-disable-next-line react/prop-types
 export default function Growth({ chart }) {
-  const customStyle = { fontSize: "12px" };
+  const customStyle = { fontSize: "10px" };
 
   return (
     <ResponsiveContainer width="100%" height={300}>
@@ -32,10 +32,10 @@ export default function Growth({ chart }) {
         }}
       >
         <CartesianGrid vertical={false} horizontal={false} />
-        <XAxis style={customStyle} stroke="white" dataKey="time" />
+        <XAxis style={customStyle} stroke="#7d7d7d" dataKey="time" />
         <YAxis
           style={customStyle}
-          stroke="white"
+          stroke="#7d7d7d"
           tickFormatter={(tick) => {
             return `${tick}%`;
           }}
@@ -50,19 +50,19 @@ export default function Growth({ chart }) {
         <Line
           type="monotone"
           dataKey="grossMargin"
-          stroke="#007cc3"
+          stroke="#48b0ed"
           strokeWidth={2}
         />
         <Line
           type="monotone"
           dataKey="operatingMargin"
-          stroke="#7ac142"
+          stroke="#1b57ed"
           strokeWidth={2}
         />
         <Line
           type="monotone"
           dataKey="incomeMargin"
-          stroke="#fdbb2f"
+          stroke="#db864a"
           strokeWidth={2}
         />
       </LineChart>

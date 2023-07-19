@@ -8,6 +8,7 @@ import { data } from "./data";
 import { getGrownthPercentage, getSortedData, getParams } from "./utils";
 import axios from "axios";
 import Testing from "./components/Testing";
+import SearchButton from "./components/SearchButton";
 
 const App = () => {
   const sortedData = getSortedData(data.incomeStatementHistory.AMD);
@@ -59,26 +60,55 @@ const App = () => {
   });
 
   return (
-    <div className="bg-night max-w-[1000px] w-full h-auto mx-auto text-base font-sourcecode text-yellow px-3">
-      <button className="flex flex-row items-center w-full px-3 py-2 text-left rounded-lg bg-cinder cursor-text">
-        <div className="w-4 h-4 mr-3">
-          <SearchIcon />
+    <div className="flex">
+      {/* LEFT */}
+      <div className="w-[10%] bg-blackjungle">Side</div>
+      {/* MID */}
+      <div className="w-full h-auto px-3 mx-auto text-base bg-night font-sourcecode text-yellow">
+        <div className="w-full">
+          <SearchButton />
+          <Trending setCurrentTicker={setCurrentTicker} />
         </div>
-        Search...
-      </button>
-      <Trending setCurrentTicker={setCurrentTicker} />
-      <Testing />
-      <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2">
-        <div className="w-full h-auto">
-          <RevGrossOp chart={graphData} />
+        <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2">
+          <div className="w-full h-auto">
+            <RevGrossOp chart={graphData} />
+          </div>
+          <div className="w-full h-auto">
+            <Income chart={graphData} />
+          </div>
+          <div className="w-full h-auto">
+            <Growth chart={getGrownthPercentage(graphData)} />
+          </div>
+          <div className="w-full h-auto">4</div>
         </div>
-        <div className="w-full h-auto">
-          <Income chart={graphData} />
+      </div>
+      {/* RIGHT */}
+      <div className="w-[25%] bg-cinder p-3 text-center text-white flex flex-col gap-2">
+        <div className="w-full p-5 rounded-sm bg-blackjungle hover:opacity-90 hover:cursor-pointer">
+          <p className="text-xl text-yellow">AAPL</p>
+          <p>Apple Inc.</p>
         </div>
-        <div className="w-full h-auto">
-          <Growth chart={getGrownthPercentage(graphData)} />
+        <div className="w-full p-5 rounded-sm bg-blackjungle">
+          <p className="text-xs text-gray">Regular Market Price:</p>
+          <p className="text-base">192.22</p>
+          <p className="text-sm text-green">1.21%</p>
         </div>
-        <div className="w-full h-auto">4</div>
+        <div className="w-full p-5 rounded-sm bg-blackjungle">
+          <p className="text-xs text-gray">Market Cap:</p>
+          <p className="text-base">$ 3.1T</p>
+        </div>
+        <div className="w-full p-5 rounded-sm bg-blackred">
+          <p className="text-xs text-gray">Forward P/E Ratio:</p>
+          <p className="text-base text-red">31.22</p>
+        </div>
+        <div className="w-full p-5 rounded-sm bg-blackgreen">
+          <p className="text-xs text-gray">SMA 50:</p>
+          <p className="text-base text-green">13.2%</p>
+        </div>
+        <div className="w-full p-5 rounded-sm bg-blackgreen">
+          <p className="text-xs text-gray">SMA 200:</p>
+          <p className="text-base text-green">22.19%</p>
+        </div>
       </div>
     </div>
   );

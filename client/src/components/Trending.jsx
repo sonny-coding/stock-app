@@ -3,20 +3,14 @@ import useFetchTrendingData from "../hooks/useFetchTrendingData";
 import { getParams } from "../utils";
 
 const Trending = ({ setCurrentTicker }) => {
-  const { data: tickers } = useFetchTrending();
-  const { data, error, isLoading } = useFetchTrendingData();
+  const { data: tickers, isLoading, error } = useFetchTrending();
 
-  if (tickers) {
-    // const myResult = getParams(tickers.slice(0, 10));
-    // console.log(myResult);
+  if (error) {
+    return <div>failed to load</div>;
   }
-
-  // if (error) {
-  //   return <div>failed to load</div>;
-  // }
-  // if (isLoading) {
-  //   return <div>loading...</div>;
-  // }
+  if (isLoading) {
+    return <div>loading...</div>;
+  }
 
   return (
     <div className="mt-5">
@@ -26,17 +20,29 @@ const Trending = ({ setCurrentTicker }) => {
             <div
               onClick={setCurrentTicker(ticker.symbol)}
               key={ticker.symbol}
-              className="w-full max-w-[140px] h-[60px] bg-blackgreen text-white px-5 p-2 hover:cursor-pointer hover:text-green"
+              className={`peer w-full max-w-[140px] h-auto text-white px-5 p-2 hover:cursor-pointer ${
+                ticker.regularMarketChangePercent >= 0
+                  ? "bg-blackgreen"
+                  : "bg-blackred"
+              }`}
             >
-              {ticker.symbol}
+              <p>{ticker.symbol}</p>
+              <div
+                className={`${
+                  ticker.regularMarketChange >= 0 ? "text-green" : "text-red"
+                }`}
+              >
+                <p className="text-xs">
+                  {ticker.regularMarketPrice.toFixed(2)}
+                </p>
+                <p className={`text-xs`}>
+                  {ticker.regularMarketChangePercent.toFixed(2)}%
+                </p>
+              </div>
             </div>
           );
         })}
       </div>
-      {data?.map((data) => {
-        return <div>{data.symbol}</div>;
-      })}
-      <p>Trending Tickers</p>
     </div>
   );
 };

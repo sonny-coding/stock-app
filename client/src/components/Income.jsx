@@ -14,7 +14,7 @@ import {
 
 // eslint-disable-next-line react/prop-types
 export default function Income({ chart }) {
-  const customStyle = { fontSize: "12px" };
+  const customStyle = { fontSize: "10px" };
   return (
     <ResponsiveContainer width={"100%"} height={300}>
       <BarChart
@@ -29,15 +29,19 @@ export default function Income({ chart }) {
         }}
       >
         <CartesianGrid vertical={false} horizontal={false} />
-        <XAxis style={customStyle} dataKey="time" stroke="white" />
-        <YAxis style={customStyle} tickFormatter={dataFormat} stroke="white" />
+        <XAxis style={customStyle} dataKey="time" stroke="#7d7d7d" />
+        <YAxis
+          style={customStyle}
+          tickFormatter={dataFormat}
+          stroke="#7d7d7d"
+        />
         <Tooltip
           formatter={dataFormat}
           contentStyle={{ backgroundColor: "#121913" }}
           cursor={{ fill: "#121913", stroke: "#121913" }}
         />
         <Legend />
-        <Bar dataKey="netIncome" stackId="a" fill="#007cc3" />
+        <Bar dataKey="netIncome" stackId="a" fill="#48b0ed" />
       </BarChart>
     </ResponsiveContainer>
   );
