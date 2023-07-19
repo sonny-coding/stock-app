@@ -84,10 +84,10 @@ const App = () => {
         </div>
         Search...
       </button>
-      {/* <Trending
-        tickers={trending?.slice(0, 7)}
+      <Trending
+        // tickers={trending?.slice(0, 7)}
         setCurrentTicker={setCurrentTicker}
-      /> */}
+      />
       <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2">
         <div className="w-full h-auto">
           <RevGrossOp chart={graphData} />
