@@ -1,5 +1,4 @@
 import useFetchTrending from "../hooks/useFetchTrending";
-import useFetchTrendingData from "../hooks/useFetchTrendingData";
 import { getParams } from "../utils";
 import { trendingDaily } from "../data";
 

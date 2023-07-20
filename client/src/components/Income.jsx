@@ -23,13 +23,13 @@ export default function Income({ chart }) {
         data={chart}
         margin={{
           top: 20,
-          right: 30,
-          left: 20,
+          right: 10,
+          left: 0,
           bottom: 5,
         }}
       >
         <CartesianGrid vertical={false} horizontal={false} />
-        <XAxis style={customStyle} dataKey="time" stroke="#7d7d7d" />
+        <XAxis style={customStyle} dataKey="year" stroke="#7d7d7d" />
         <YAxis
           style={customStyle}
           tickFormatter={dataFormat}
@@ -40,7 +40,7 @@ export default function Income({ chart }) {
           contentStyle={{ backgroundColor: "#121913", fontSize: "14px" }}
           cursor={{ fill: "#121913", stroke: "#121913" }}
         />
-        <Legend />
+        <Legend wrapperStyle={{ fontSize: "11px" }} />
         <Bar dataKey="netIncome" stackId="a" fill="#48b0ed" />
       </BarChart>
     </ResponsiveContainer>

@@ -2,8 +2,6 @@
 // import React from "react";
 import { dataFormat } from "../utils";
 import {
-  //   BarChart,
-  //   Bar,
   XAxis,
   YAxis,
   CartesianGrid,
@@ -26,13 +24,13 @@ export default function Growth({ chart }) {
         data={chart}
         margin={{
           top: 20,
-          right: 30,
-          left: 20,
+          right: 10,
+          left: 0,
           bottom: 5,
         }}
       >
         <CartesianGrid vertical={false} horizontal={false} />
-        <XAxis style={customStyle} stroke="#7d7d7d" dataKey="time" />
+        <XAxis style={customStyle} dataKey="year" stroke="#7d7d7d" />
         <YAxis
           style={customStyle}
           stroke="#7d7d7d"
@@ -45,8 +43,7 @@ export default function Growth({ chart }) {
           contentStyle={{ backgroundColor: "#121913", fontSize: "14px" }}
           cursor={{ fill: "#121913", stroke: "#121913" }}
         />
-        <Legend />
-        {/* <Bar dataKey="netIncome" stackId="a" fill="#8884d8" /> */}
+        <Legend wrapperStyle={{ fontSize: "11px" }} />
         <Line
           type="monotone"
           dataKey="grossMargin"

@@ -1,6 +1,4 @@
-// import "./styles.css";
-// import React from "react";
-import { dataFormat } from "../utils";
+import React from "react";
 import {
   BarChart,
   Bar,
@@ -10,15 +8,16 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
-  Label,
 } from "recharts";
+import { dataFormat } from "../utils";
 
-// eslint-disable-next-line react/prop-types
-export default function RevGrossOp({ chart }) {
+export default function OperatingExpenses({ chart }) {
   const customStyle = { fontSize: "10px" };
   return (
-    <ResponsiveContainer width="100%" height={300}>
+    <ResponsiveContainer width={"100%"} height={300}>
       <BarChart
+        // width={500}
+        // height={300}
         data={chart}
         margin={{
           top: 20,
@@ -40,10 +39,9 @@ export default function RevGrossOp({ chart }) {
           cursor={{ fill: "#121913", stroke: "#121913" }}
         />
         <Legend wrapperStyle={{ fontSize: "11px" }} />
-
-        <Bar dataKey="totalRevenue" stackId="a" fill="#48b0ed" />
-        <Bar dataKey="grossProfit" stackId="b" fill="#1b57ed" />
-        <Bar dataKey="operatingIncome" stackId="c" fill="#db864a" />
+        <Bar dataKey="grossProfit" stackId="a" fill="#db864a" />
+        <Bar dataKey="R&D" stackId="b" fill="#1b57ed" />
+        <Bar dataKey="SG&A" stackId="b" fill="#48b0ed" />
       </BarChart>
     </ResponsiveContainer>
   );

@@ -8,6 +8,7 @@ import { data } from "./data";
 import { getGrownthPercentage, getSortedData, getParams } from "./utils";
 import SearchButton from "./components/SearchButton";
 import Finance from "./components/Finance";
+import Graphs from "./components/Graphs";
 
 /* 
 Things to do:
@@ -75,18 +76,7 @@ const App = () => {
           <SearchButton />
           <Trending setCurrentTicker={setCurrentTicker} />
         </div>
-        <div className="grid w-full grid-cols-1 gap-2 md:grid-cols-2">
-          <div className="w-full h-auto">
-            <RevGrossOp chart={graphData} />
-          </div>
-          <div className="w-full h-auto">
-            <Income chart={graphData} />
-          </div>
-          <div className="w-full h-auto">
-            <Growth chart={getGrownthPercentage(graphData)} />
-          </div>
-          <div className="w-full h-auto">4</div>
-        </div>
+        <Graphs />
       </div>
       {/* RIGHT */}
       <Finance />
