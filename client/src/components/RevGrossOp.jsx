@@ -10,6 +10,7 @@ import {
   Tooltip,
   Legend,
   ResponsiveContainer,
+  Label,
 } from "recharts";
 
 // eslint-disable-next-line react/prop-types
@@ -35,10 +36,11 @@ export default function RevGrossOp({ chart }) {
         />
         <Tooltip
           formatter={dataFormat}
-          contentStyle={{ backgroundColor: "#121913" }}
+          contentStyle={{ backgroundColor: "#121913", fontSize: "14px" }}
           cursor={{ fill: "#121913", stroke: "#121913" }}
         />
         <Legend />
+
         <Bar dataKey="totalRevenue" stackId="a" fill="#48b0ed" />
         <Bar dataKey="grossProfit" stackId="b" fill="#1b57ed" />
         <Bar dataKey="operatingIncome" stackId="c" fill="#db864a" />

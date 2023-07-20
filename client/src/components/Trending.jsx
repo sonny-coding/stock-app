@@ -1,21 +1,22 @@
 import useFetchTrending from "../hooks/useFetchTrending";
 import useFetchTrendingData from "../hooks/useFetchTrendingData";
 import { getParams } from "../utils";
+import { trendingDaily } from "../data";
 
 const Trending = ({ setCurrentTicker }) => {
-  const { data: tickers, isLoading, error } = useFetchTrending();
+  // const { data: tickers, isLoading, error } = useFetchTrending();
 
-  if (error) {
-    return <div>failed to load</div>;
-  }
-  if (isLoading) {
-    return <div>loading...</div>;
-  }
+  // if (error) {
+  //   return <div>failed to load</div>;
+  // }
+  // if (isLoading) {
+  //   return <div>loading...</div>;
+  // }
 
   return (
     <div className="mt-5">
       <div className="flex flex-row items-center w-full gap-3 mt-5">
-        {tickers?.slice(0, 7).map((ticker) => {
+        {trendingDaily?.quoteResponse?.result.slice(0, 7).map((ticker) => {
           return (
             <div
               onClick={setCurrentTicker(ticker.symbol)}

@@ -37,7 +37,7 @@ export default function Income({ chart }) {
         />
         <Tooltip
           formatter={dataFormat}
-          contentStyle={{ backgroundColor: "#121913" }}
+          contentStyle={{ backgroundColor: "#121913", fontSize: "14px" }}
           cursor={{ fill: "#121913", stroke: "#121913" }}
         />
         <Legend />
