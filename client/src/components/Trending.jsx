@@ -1,8 +1,9 @@
 import useFetchTrending from "../hooks/useFetchTrending";
 import { getParams } from "../utils";
 import { trendingDaily } from "../data";
+import StarIcon from "./svg/StarIcon";
 
-const Trending = ({ setCurrentTicker }) => {
+const Trending = ({ setCurrentTicker, handleStarClick }) => {
   // const { data: tickers, isLoading, error } = useFetchTrending();
 
   // if (error) {
@@ -26,7 +27,17 @@ const Trending = ({ setCurrentTicker }) => {
                   : "bg-blackred"
               }`}
             >
-              <p>{ticker.symbol}</p>
+              <div className="flex gap-2">
+                <p>{ticker.symbol}</p>
+                <div
+                  onClick={() => {
+                    handleStarClick(ticker.symbol);
+                  }}
+                  className="flex justify-center w-4 hover:text-yellow"
+                >
+                  <StarIcon />
+                </div>
+              </div>
               <div
                 className={`${
                   ticker.regularMarketChange >= 0 ? "text-green" : "text-red"

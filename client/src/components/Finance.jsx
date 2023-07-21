@@ -1,12 +1,25 @@
 import React from "react";
 import { aapl } from "../data";
+import StarIcon from "./svg/StarIcon";
+import { tickers } from "../data/recent";
 
-const Finance = () => {
+const Finance = ({ handleStarClick }) => {
   const data = aapl.quoteResponse.result[0];
+
   return (
     <div className="w-[25%] bg-cinder p-3 text-center text-white flex flex-col gap-2">
-      <div className="w-full p-5 rounded-sm bg-blackjungle hover:opacity-90 hover:cursor-pointer">
-        <p className="text-2xl text-yellow">{data.symbol}</p>
+      <div className="w-full p-5 rounded-sm bg-blackjungle hover:cursor-pointer">
+        <div className="flex flex-row justify-center gap-3">
+          <p className="text-2xl text-yellow">{data.symbol}</p>
+          <div
+            onClick={() => {
+              handleStarClick(data.symbol);
+            }}
+            className="flex justify-center w-5 hover:text-yellow hover:scale-[1.05]"
+          >
+            <StarIcon />
+          </div>
+        </div>
         <p>{data.shortName}</p>
       </div>
       <div

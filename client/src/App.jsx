@@ -9,6 +9,8 @@ import { getGrownthPercentage, getSortedData, getParams } from "./utils";
 import SearchButton from "./components/SearchButton";
 import Finance from "./components/Finance";
 import Graphs from "./components/Graphs";
+import SideBar from "./components/SideBar";
+import useLocalStorage from "./hooks/useLocalStorage";
 
 /* 
 Things to do:
@@ -17,10 +19,28 @@ implement favorites (localStorage)
 add more graphs
 responsiveness
 */
+const defaultTickers = ["msft", "amd"];
 const App = () => {
   const sortedData = getSortedData(data.incomeStatementHistory.AMD);
   const [trending, setTrending] = useState(null);
   const [currentTicker, setCurrentTicker] = useState("AAPL");
+  const [savedTickers, setSavedTickers] = useLocalStorage(
+    "saved",
+    defaultTickers
+  );
+  const handleStarClick = (ticker) => {
+    if (!savedTickers.includes(ticker.toLowerCase())) {
+      setSavedTickers((tickers) => {
+        return [...tickers, ticker.toLowerCase()];
+      });
+    } else {
+      setSavedTickers(
+        savedTickers.filter((each) => {
+          return each !== ticker.toLowerCase();
+        })
+      );
+    }
+  };
 
   // useEffect(() => {
   //   const fetchTicker = async () => {
@@ -69,17 +89,20 @@ const App = () => {
   return (
     <div className="flex">
       {/* LEFT */}
-      <div className="w-[10%] bg-blackjungle">Side</div>
+      <SideBar savedTickers={savedTickers} handleStarClick={handleStarClick} />
       {/* MID */}
       <div className="w-full h-auto px-3 mx-auto text-base bg-night font-sourcecode text-yellow">
         <div className="w-full">
           <SearchButton />
-          <Trending setCurrentTicker={setCurrentTicker} />
+          <Trending
+            setCurrentTicker={setCurrentTicker}
+            handleStarClick={handleStarClick}
+          />
         </div>
         <Graphs />
       </div>
       {/* RIGHT */}
-      <Finance />
+      <Finance handleStarClick={handleStarClick} />
     </div>
   );
 };
