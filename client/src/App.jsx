@@ -1,21 +1,17 @@
-import { useEffect, useState } from "react";
-import Growth from "./components/Growth";
-import Income from "./components/Income";
-import RevGrossOp from "./components/RevGrossOp";
-import Trending from "./components/Trending";
-import SearchIcon from "./components/svg/SearchIcon";
-import { data } from "./data";
-import { getGrownthPercentage, getSortedData, getParams } from "./utils";
-import SearchButton from "./components/SearchButton";
+import { useState } from "react";
 import Finance from "./components/Finance";
 import Graphs from "./components/Graphs";
+import SearchButton from "./components/SearchButton";
 import SideBar from "./components/SideBar";
+import Trending from "./components/Trending";
+import { data } from "./data";
 import useLocalStorage from "./hooks/useLocalStorage";
+import { getSortedData } from "./utils";
 
 /* 
 Things to do:
-refactor app.js
-implement favorites (localStorage)
+
+fix margin
 add more graphs
 responsiveness
 */
@@ -25,9 +21,12 @@ const App = () => {
   const [trending, setTrending] = useState(null);
   const [currentTicker, setCurrentTicker] = useState("AAPL");
   const [savedTickers, setSavedTickers] = useLocalStorage(
-    "saved",
+    "savedTickers",
     defaultTickers
   );
+  // useState(() => {
+  //   alert(currentTicker);
+  // }, [currentTicker]);
   const handleStarClick = (ticker) => {
     if (!savedTickers.includes(ticker.toLowerCase())) {
       setSavedTickers((tickers) => {
@@ -69,23 +68,6 @@ const App = () => {
   //   fetchTicker();
   // }, []);
 
-  const graphData = sortedData.map((element, index) => {
-    for (const [key, value] of Object.entries(element)) {
-      // console.log(`${key}: ${value.totalRevenue}`);
-      return {
-        time: index + 1 < sortedData.length ? key.split("-")[0] : "TTM",
-        totalRevenue: value.totalRevenue,
-        // costOfRevenue: value.costOfRevenue,
-        grossProfit: value.grossProfit,
-        // researchAndDevelopment: value.researchAndDevelopment,
-        // sellingGeneralAndAdministration: value.sellingGeneralAndAdministration,
-        operatingIncome: value.operatingIncome,
-        netIncome: value.netIncome,
-        // basicEPS: value.basicEPS,
-      };
-    }
-  });
-
   return (
     <div className="flex">
       {/* LEFT */}
@@ -96,13 +78,15 @@ const App = () => {
           <SearchButton />
           <Trending
             setCurrentTicker={setCurrentTicker}
+            savedTickers={savedTickers}
             handleStarClick={handleStarClick}
+            currentTicker={currentTicker}
           />
         </div>
         <Graphs />
       </div>
       {/* RIGHT */}
-      <Finance handleStarClick={handleStarClick} />
+      <Finance handleStarClick={handleStarClick} savedTickers={savedTickers} />
     </div>
   );
 };

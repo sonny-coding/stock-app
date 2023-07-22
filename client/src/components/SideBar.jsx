@@ -4,7 +4,7 @@ import StarIcon from "./svg/StarIcon";
 const SideBar = ({ savedTickers, handleStarClick }) => {
   return (
     <div className="w-[10%] bg-blackjungle text-white">
-      <ul className="mt-20">
+      <ul className="mt-20 [&>*]:mt-3">
         {savedTickers.map((ticker) => {
           return (
             <li className="flex" key={ticker}>
@@ -12,7 +12,7 @@ const SideBar = ({ savedTickers, handleStarClick }) => {
                 onClick={() => {
                   handleStarClick(ticker);
                 }}
-                className="flex justify-center w-4 mx-2 hover:cursor-pointer text-yellow hover:text-white"
+                className={`flex justify-center w-4 mx-2 hover:cursor-pointer text-yellow hover:text-white`}
               >
                 <StarIcon />
               </div>

@@ -1,10 +1,9 @@
-import SearchButton from "./SearchButton";
-import Trending from "./Trending";
-import RevGrossOp from "./RevGrossOp";
-import Income from "./Income";
-import Growth from "./Growth";
-import OperatingExpenses from "./OperatingExpenses";
 import { getGrownthPercentage } from "../utils";
+import Growth from "./Growth";
+import Income from "./Income";
+import OperatingExpenses from "./OperatingExpenses";
+import RevGrossOp from "./RevGrossOp";
+import Sankey from "./Sankey";
 
 import { newData } from "../data/newData";
 
@@ -42,7 +41,10 @@ const Graphs = () => {
         <p className="mt-2">Margin</p>
         <Growth chart={getGrownthPercentage(graphData)} />
       </div>
-      <div className="w-full h-auto">4</div>
+      <div className="w-full h-auto text-center bg-blackjungle">
+        <p className="mt-2">Sankey</p>
+        <Sankey />
+      </div>
     </div>
   );
 };

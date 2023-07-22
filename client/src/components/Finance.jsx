@@ -3,7 +3,7 @@ import { aapl } from "../data";
 import StarIcon from "./svg/StarIcon";
 import { tickers } from "../data/recent";
 
-const Finance = ({ handleStarClick }) => {
+const Finance = ({ handleStarClick, savedTickers }) => {
   const data = aapl.quoteResponse.result[0];
 
   return (
@@ -15,7 +15,11 @@ const Finance = ({ handleStarClick }) => {
             onClick={() => {
               handleStarClick(data.symbol);
             }}
-            className="flex justify-center w-5 hover:text-yellow hover:scale-[1.05]"
+            className={`flex justify-center w-5 ${
+              savedTickers.includes(data.symbol.toLowerCase())
+                ? "text-yellow hover:text-white"
+                : "text-white hover:text-yellow"
+            }`}
           >
             <StarIcon />
           </div>

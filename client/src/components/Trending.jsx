@@ -3,7 +3,7 @@ import { getParams } from "../utils";
 import { trendingDaily } from "../data";
 import StarIcon from "./svg/StarIcon";
 
-const Trending = ({ setCurrentTicker, handleStarClick }) => {
+const Trending = ({ savedTickers, setCurrentTicker, handleStarClick }) => {
   // const { data: tickers, isLoading, error } = useFetchTrending();
 
   // if (error) {
@@ -13,13 +13,13 @@ const Trending = ({ setCurrentTicker, handleStarClick }) => {
   //   return <div>loading...</div>;
   // }
 
+  // console.log(savedTickers.includes("amd"));
   return (
     <div className="mt-5">
       <div className="flex flex-row items-center w-full gap-3 mt-5">
         {trendingDaily?.quoteResponse?.result.slice(0, 7).map((ticker) => {
           return (
             <div
-              onClick={setCurrentTicker(ticker.symbol)}
               key={ticker.symbol}
               className={`peer w-full max-w-[140px] h-auto text-white px-5 p-2 hover:cursor-pointer ${
                 ticker.regularMarketChangePercent >= 0
@@ -32,8 +32,13 @@ const Trending = ({ setCurrentTicker, handleStarClick }) => {
                 <div
                   onClick={() => {
                     handleStarClick(ticker.symbol);
+                    console.log(savedTickers);
                   }}
-                  className="flex justify-center w-4 hover:text-yellow"
+                  className={`flex justify-center w-4 ${
+                    savedTickers.includes(ticker.symbol.toLowerCase())
+                      ? "text-yellow hover:text-white"
+                      : "text-white hover:text-yellow"
+                  }`}
                 >
                   <StarIcon />
                 </div>

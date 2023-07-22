@@ -1,26 +1,25 @@
-// import "./styles.css";
-// import React from "react";
+import React from "react";
 import { dataFormat } from "../utils";
 import {
+  BarChart,
+  Bar,
   XAxis,
   YAxis,
   CartesianGrid,
   Tooltip,
-  Legend,
-  Line,
   LineChart,
+  Line,
+  Legend,
   ResponsiveContainer,
 } from "recharts";
 
-// eslint-disable-next-line react/prop-types
-export default function Growth({ chart }) {
+const Growth = ({ chart }) => {
   const customStyle = { fontSize: "10px" };
-
   return (
     <ResponsiveContainer width="100%" height={300}>
       <LineChart
-        width={500}
-        height={300}
+        // width={500}
+        // height={300}
         data={chart}
         margin={{
           top: 20,
@@ -29,7 +28,7 @@ export default function Growth({ chart }) {
           bottom: 5,
         }}
       >
-        <CartesianGrid vertical={false} horizontal={false} />
+        {/* <CartesianGrid vertical={} horizontal={false} /> */}
         <XAxis style={customStyle} dataKey="year" stroke="#7d7d7d" />
         <YAxis
           style={customStyle}
@@ -41,7 +40,7 @@ export default function Growth({ chart }) {
         <Tooltip
           formatter={dataFormat}
           contentStyle={{ backgroundColor: "#121913", fontSize: "14px" }}
-          cursor={{ fill: "#121913", stroke: "#121913" }}
+          // cursor={{ fill: "#121913", stroke: "#121913" }}
         />
         <Legend wrapperStyle={{ fontSize: "11px" }} />
         <Line
@@ -65,4 +64,6 @@ export default function Growth({ chart }) {
       </LineChart>
     </ResponsiveContainer>
   );
-}
+};
+
+export default Growth;
